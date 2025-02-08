@@ -7,6 +7,25 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_09():
+    valores_por_clave = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            valores = line.strip().split("\t")
+            diccionario = valores[4].split(",")
+
+            for par in diccionario:
+                clave, valor = par.split(":")
+                valor = int(valor)
+
+                if clave in valores_por_clave:
+                    valores_por_clave[clave] += 1
+                else:
+                    valores_por_clave[clave] = 1
+
+    resultado = dict(sorted(valores_por_clave.items()))
+
+    return resultado
     """
     Retorne un diccionario que contenga la cantidad de registros en que
     aparece cada clave de la columna 5.

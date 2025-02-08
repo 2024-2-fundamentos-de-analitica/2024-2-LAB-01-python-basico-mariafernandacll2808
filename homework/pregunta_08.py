@@ -7,6 +7,22 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_08():
+    valores_por_numero = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            valores = line.strip().split("\t")
+            letra = valores[0]
+            numero = int(valores[1])
+
+            if numero not in valores_por_numero:
+                valores_por_numero[numero] = set()  
+
+            valores_por_numero[numero].add(letra)
+
+    resultado = sorted((numero, sorted(list(letras))) for numero, letras in valores_por_numero.items())
+
+    return resultado
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla
     contiene  el valor de la segunda columna; la segunda parte de la tupla
@@ -27,3 +43,4 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+print(pregunta_08())

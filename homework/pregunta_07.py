@@ -7,6 +7,23 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_07():
+    valores_por_numero = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            valores = line.strip().split("\t")
+            letra = valores[0]
+            numero = int(valores[1])
+
+            if numero in valores_por_numero:
+                valores_por_numero[numero].append(letra)
+            else:
+                valores_por_numero[numero] = [letra]
+
+    print(valores_por_numero)
+    resultado = sorted(valores_por_numero.items())
+
+    return resultado
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla
     contiene un valor posible de la columna 2 y una lista con todas las letras
